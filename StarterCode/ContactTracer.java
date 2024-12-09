@@ -1,6 +1,6 @@
 /**************************
  * Author: Christian Duncan (Starting Code)
- * Modified by: <TEAM MEMBERS>
+ * Modified by: Dawit Kasy, Ella Berry, Jason Handrahan, Jeremy Wiening, Paul Zegarek
  * 
  * Fall 2024, CSC215
  * Given a graph of contact points between individuals, a list of infected individuals, 
