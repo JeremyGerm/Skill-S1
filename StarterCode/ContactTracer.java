@@ -39,6 +39,8 @@ public class ContactTracer {
 
             HashMap<String, Integer> peopleId = new HashMap<>();
 
+            Graph g = new Graph();
+
             for (int i = 0; i < n; i++) {
                 String id = sc.nextLine();
                 System.out.println("DEBUG: Node " + i + ": ID=" + id);
@@ -47,12 +49,14 @@ public class ContactTracer {
                 // Using a Hashmap, I would map ID to i, call it the id number.
                 int idNum = i;
                 peopleId.put(id, idNum);
+                g.addVertex(idNum);
                
             }
 
             // You will probably want to create an undirected graph G with n nodes
             // Initially with no edges but add a method to add an edge between two nodes
-            //instantiate graph here
+
+        
 
             // System.out.println("//////////////////////////////////////////////////////");
             // System.out.println("HashMap elements" + peopleId);
@@ -67,10 +71,19 @@ public class ContactTracer {
                 String idB = line[1];
                 //example idA:Alice, idB: Bob were in contact. now we must use the method to create a connection(edge) between them
 
+            
+
                 System.out.println("DEBUG: Contact between " + idA + " and " + idB);
-                // You might want to get the id number of idA and idB from the Hashmap
+                // You might want to get the id number of idA and idB from the Hashmap-
                 // Then add the edge between idA and idB to the graph
+                g.addEdge(peopleId.get(idB), peopleId.get(idA));;
             }
+
+            System.out.println("//////////////////////////////////////////////////////");
+             g.printAdjacencyList();
+              System.out.println("//////////////////////////////////////////////////////");
+
+
 
             // Get how many contacts have been infected and how far to report exposure from
             // an infected individual
@@ -92,6 +105,10 @@ public class ContactTracer {
         } catch (IOException e) {
             System.err.println("Error reading in the graph: " + e.getMessage());
         }
+
+
+        
+            
         
 
     }
