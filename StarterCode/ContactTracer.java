@@ -79,9 +79,11 @@ public class ContactTracer {
                 g.addEdge(peopleId.get(idB), peopleId.get(idA));;
             }
 
-            System.out.println("//////////////////////////////////////////////////////");
-             g.printAdjacencyList();
-              System.out.println("//////////////////////////////////////////////////////");
+            // System.out.println("//////////////////////////////////////////////////////");
+            //  g.printAdjacencyList();
+            //   System.out.println("//////////////////////////////////////////////////////");
+
+          
 
 
 
@@ -96,6 +98,8 @@ public class ContactTracer {
                 String idA = sc.nextLine();
                 System.out.println("DEBUG: Infected: " + idA);
                 infected.add(idA);
+
+                //find a way to find the distance from node peopleInfected.get(idA)
             }
 
             // Now process the information to get the results...
