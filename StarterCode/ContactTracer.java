@@ -10,6 +10,7 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class ContactTracer {
@@ -36,24 +37,35 @@ public class ContactTracer {
             // Get the number of names (IDs)
             int n = Integer.parseInt(sc.nextLine());
 
+            HashMap<String, Integer> peopleId = new HashMap<>();
+
             for (int i = 0; i < n; i++) {
                 String id = sc.nextLine();
                 System.out.println("DEBUG: Node " + i + ": ID=" + id);
 
                 // You will want to store this ID. 
                 // Using a Hashmap, I would map ID to i, call it the id number.
+                int idNum = i;
+                peopleId.put(id, idNum);
+               
             }
 
             // You will probably want to create an undirected graph G with n nodes
             // Initially with no edges but add a method to add an edge between two nodes
+            //instantiate graph here
+
+            // System.out.println("//////////////////////////////////////////////////////");
+            // System.out.println("HashMap elements" + peopleId);
 
             // Get the various connections
             int m = Integer.parseInt(sc.nextLine());
+                   
 
             for (int e = 0; e < m; e++) {
                 line = sc.nextLine().split(" ");
                 String idA = line[0];
                 String idB = line[1];
+                //example idA:Alice, idB: Bob were in contact. now we must use the method to create a connection(edge) between them
 
                 System.out.println("DEBUG: Contact between " + idA + " and " + idB);
                 // You might want to get the id number of idA and idB from the Hashmap
@@ -80,5 +92,7 @@ public class ContactTracer {
         } catch (IOException e) {
             System.err.println("Error reading in the graph: " + e.getMessage());
         }
+        
+
     }
 }
