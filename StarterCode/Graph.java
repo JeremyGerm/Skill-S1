@@ -18,6 +18,11 @@ class Graph {
         adjacencyList.get(destination).add(source); // For undirected graph
     }
 
+    // Get neighbors of a vertex
+    public List<Integer> getAdjacent(int vertex) {
+        return adjacencyList.getOrDefault(vertex, new ArrayList<>());
+    }
+
     // Print the adjacency list
     public void printAdjacencyList() {
         for (Map.Entry<Integer, List<Integer>> entry : adjacencyList.entrySet()) {

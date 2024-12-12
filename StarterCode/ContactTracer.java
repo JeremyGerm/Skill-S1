@@ -11,6 +11,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class ContactTracer {
@@ -98,22 +100,51 @@ public class ContactTracer {
                 String idA = sc.nextLine();
                 System.out.println("DEBUG: Infected: " + idA);
                 infected.add(idA);
-
-                //find a way to find the distance from node peopleInfected.get(idA)
             }
 
-            // Now process the information to get the results...
-            // Use the Graph, infected list, and distance to get the result and print the number of
-            // exposed individuals.
+                //find a way to find the distance from node peopleInfected.get(idA)
 
+            HashMap<Integer, Boolean> exposed = new HashMap<>();
+            for (String id : infected) {
+                int startnode = peopleId.get(id);
+                exposed.putAll(bfs(g, startnode, distance));                
+            }
+                
+        System.out.println("Number of exposed individuals: " + exposed.size());
         } catch (IOException e) {
             System.err.println("Error reading in the graph: " + e.getMessage());
         }
-
-
         
-            
-        
+        // Now process the information to get the results...
+            // Use the Graph, infected list, and distance to get the result and print the number of
+            // exposed individuals.
+    }
 
+    public static HashMap<Integer, Boolean> bfs(Graph g, int startNode, int maxDistance) {
+        HashMap<Integer, Boolean> visited = new HashMap<>();
+        Queue<int[]> queue = new LinkedList<>();
+
+        queue.add(new int[]{startNode, 0});
+        visited.put(startNode, true);
+
+        while(!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int node = current [0];
+            int distance = current [1];
+
+            if (distance >= maxDistance) {
+                continue;
+            }
+
+            for (int neighbor : g.getAdjacent(node)) {
+                if (!visited.containsKey(neighbor)) {
+                    visited.put(neighbor, true);
+                    queue.add(new int[]{neighbor, distance + 1});
+                }
+            }
+        }
+
+
+        return visited;
     }
 }
